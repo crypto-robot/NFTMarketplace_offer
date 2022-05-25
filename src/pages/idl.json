@@ -1,0 +1,448 @@
+{
+  "version": "0.1.0",
+  "name": "bid_contract",
+  "instructions": [
+    {
+      "name": "initBiddingWallet",
+      "accounts": [
+        {
+          "name": "signer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "vault",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "biddingWalletData",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "nonceAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "recentBlockhash",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bumpAuthority",
+          "type": "u8"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "withdrawFromBiddingWallet",
+      "accounts": [
+        {
+          "name": "signer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "vault",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "biddingWalletData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "nonceAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "recentBlockhash",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bumpAuthority",
+          "type": "u8"
+        },
+        {
+          "name": "withdrawAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "makeOffer",
+      "accounts": [
+        {
+          "name": "signer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "bidData",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "vault",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "biddingWalletData",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "nftMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "nonceAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bumpAuthority",
+          "type": "u8"
+        },
+        {
+          "name": "bidAmount",
+          "type": "u64"
+        },
+        {
+          "name": "expireTime",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "amendOffer",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "vault",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "bidData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bumpAuthority",
+          "type": "u8"
+        },
+        {
+          "name": "bidAmount",
+          "type": "u64"
+        },
+        {
+          "name": "expireTime",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "cancelOffer",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "bidData",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "rejectOffer",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "bidData",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "sell",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "vault",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "bidData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "salesTaxRecipient",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "nftMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "metadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "sourceNftAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destNftAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "nonceAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "recentBlockhash",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bumpAuthority",
+          "type": "u8"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "BiddingWalletData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "nonceAccount",
+            "type": "publicKey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BidData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "nftMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "nonceAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "bidder",
+            "type": "publicKey"
+          },
+          {
+            "name": "bidAmount",
+            "type": "u64"
+          },
+          {
+            "name": "status",
+            "type": "u8"
+          },
+          {
+            "name": "bidTime",
+            "type": "i64"
+          },
+          {
+            "name": "expireTime",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidOwner",
+      "msg": "Invalid Owner"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidAdminWallet",
+      "msg": "Invalid Admin Wallet Address"
+    },
+    {
+      "code": 6002,
+      "name": "InvalidMintKey",
+      "msg": "Invalid Wrap Sol Account"
+    },
+    {
+      "code": 6003,
+      "name": "InvalidTokenAccount",
+      "msg": "Invalid token account"
+    },
+    {
+      "code": 6004,
+      "name": "InvalidTokenMint",
+      "msg": "Invalid token mint"
+    },
+    {
+      "code": 6005,
+      "name": "InvalidMetadata",
+      "msg": "Invalid metadata"
+    },
+    {
+      "code": 6006,
+      "name": "NotBigger",
+      "msg": "Bid amount must be bigger than floor price"
+    },
+    {
+      "code": 6007,
+      "name": "InvalidPrevTokenAccount",
+      "msg": "Invalid previous bidder token account"
+    },
+    {
+      "code": 6008,
+      "name": "TokenSetAuthorityFailed",
+      "msg": "Token set authority failed"
+    },
+    {
+      "code": 6009,
+      "name": "TokenTransferFailed",
+      "msg": "Token transfer failed"
+    },
+    {
+      "code": 6010,
+      "name": "InvalidRoyaltyFee",
+      "msg": "Invalid Royalty fee."
+    },
+    {
+      "code": 6011,
+      "name": "CreatorMismatch",
+      "msg": "Creators are mismatched."
+    },
+    {
+      "code": 6012,
+      "name": "InvalidInstructions",
+      "msg": "Invalid Instructions."
+    },
+    {
+      "code": 6013,
+      "name": "InvalidSData",
+      "msg": "Invalid Seller Data Account"
+    },
+    {
+      "code": 6014,
+      "name": "InvalidNonce",
+      "msg": "Invalid Nonce Account"
+    },
+    {
+      "code": 6015,
+      "name": "InvalidSeller",
+      "msg": "Invalid Seller address"
+    }
+  ]
+}
